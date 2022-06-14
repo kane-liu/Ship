@@ -14,8 +14,8 @@ open class Session {
     }
 
     @discardableResult
-    open func send<R: Request>(_ request: R, callbackQueue: CallbackQueue? = nil, handler: @escaping (Result<R.Response, SessionTaskError>) -> Void) -> SessionTask? {
+    open func send<R: Request>(_ request: R, callbackQueue: CallbackQueue? = nil, progressHandler: @escaping (Int64, Int64, Int64) -> Void, completionHandler: @escaping (Result<R.Response, SessionTaskError>) -> Void) -> SessionTask? {
         let proxy = RequestProxy(request: request, dependency: dependency)
-        return session.send(proxy, callbackQueue: callbackQueue, handler: handler)
+        return session.send(proxy, callbackQueue: callbackQueue, progressHandler: progressHandler, completionHandler: completionHandler)
     }
 }
