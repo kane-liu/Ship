@@ -2,7 +2,7 @@ import APIKit
 import Foundation
 
 open class Session {
-    public let session: APIKit.Session
+    private let session: APIKit.Session
     private let dependency: Dependency
 
     public init(dependency: Dependency, sessionConfiguration: URLSessionConfiguration = .default) {
